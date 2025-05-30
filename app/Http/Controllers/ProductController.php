@@ -48,4 +48,23 @@ class ProductController extends Controller
 
         return view("products", compact("productsData"));
     }
+
+    public function DeleteProduct($id)
+    {
+        $product = Product::find($id);
+
+        if ($product) {
+            $product->delete();
+            return redirect('/');
+        }
+
+        return redirect('/');
+    }
+
+    public function DetailProduct($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('details', compact('product'));
+    }
 }

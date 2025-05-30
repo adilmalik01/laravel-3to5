@@ -2,150 +2,433 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Product</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Fonts for style -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Product - ShopHub</title>
     <style>
-        body {
-            min-height: 100vh;
+        * {
             margin: 0;
-            background: linear-gradient(102.3deg, #93718b 5.9%, #ead3ef 64%, #e8e8fc 89%);
-            font-family: 'Playfair Display', serif, Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo::before {
+            content: '🛍️';
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.25);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white !important;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, #38a169, #2f855a) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Main Content */
+        .main-content {
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
         }
-        .glass-card {
-            background: rgba(255,255,255,0.85);
-            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.20);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            backdrop-filter: blur(8px);
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             width: 100%;
-            max-width: 540px;
-            margin: 32px 0;
-            border: 1.2px solid #dbdbeb;
-            animation: fadeIn 0.7s cubic-bezier(.21,1.02,.73,1) 1;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px);}
-            to   { opacity: 1; transform: translateY(0);}
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
         }
-        .title {
-            font-size: 2.2rem;
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-title {
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: 1px;
             text-align: center;
-            margin-bottom: 2rem;
-            background: linear-gradient(90deg, #9b87f5, #33c3f0);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
-            color: transparent;
             background-clip: text;
+            color: transparent;
         }
-        form {
+
+        .form-subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
-        .field-group {
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .form-group {
             display: flex;
             flex-direction: column;
-        }
-        label {
-            font-weight: 600;
-            color: #463b6b;
-            margin-bottom: 6px;
-            font-size: 1rem;
-            letter-spacing: 0.2px;
-        }
-        input, select, textarea {
-            border: 1.2px solid #ccc;
-            border-radius: 6px;
-            padding: 10px 12px;
-            font-size: 1rem;
-            background: #fafaff;
-            box-shadow: 0 2px 4px 0 rgba(194,194,239,.06);
-            transition: border 0.18s, box-shadow 0.18s;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border: 1.5px solid #9b87f5;
-            box-shadow: 0 2px 8px 0 #e8e0fe80;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 60px;
-        }
-        .input-row {
-            display: flex;
-            gap: 1rem;
-        }
-        .input-row .field-group {
             flex: 1;
         }
-        button {
-            margin-top: 1.5rem;
-            background: linear-gradient(90deg, #9b87f5, #33c3f0);
-            border: none;
-            border-radius: 8px;
-            padding: 12px 0;
-            color: #fff;
-            font-size: 1.08rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+
+        .form-label {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-select {
             cursor: pointer;
-            box-shadow: 0 4px 14px 0 #29a5ff22;
-            transition: transform 0.12s, box-shadow 0.15s;
         }
-        button:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 20px 0 #8e9be070;
+
+        .form-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 1.25rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-        @media (max-width: 700px) {
-            .glass-card { padding: 1.3rem 0.6rem; }
-            .input-row { flex-direction: column; gap: 0.5rem; }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .form-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .required-asterisk {
+            color: #e53e3e;
+            margin-left: 2px;
+        }
+
+        /* Success Animation */
+        .success-feedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #48bb78;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .success-feedback.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background: rgba(102, 126, 234, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem 0;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-<div class="glass-card">
-    <div class="title">Add New Product</div>
-    <form method="POST" action="/submit-form">
-        @csrf
-        <div class="field-group">
-            <label for="product_name">Product Name</label>
-            <input type="text" name="product_name" id="product_name" placeholder="e.g., iPhone 15 Pro Max" required>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">ShopHub</a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#" class="nav-cta active">Add Product</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
-        <div class="field-group">
-            <label for="product_description">Product Description</label>
-            <textarea name="product_description" id="product_description" placeholder="Describe your product..." required></textarea>
+    </nav>
+
+    <div class="main-content">
+        <div class="form-container">
+            <h1 class="form-title">Add New Product</h1>
+            <p class="form-subtitle">Create a new product listing for your store</p>
+            
+            <form class="form-grid" method="POST" action="/submit-form" id="productForm">
+                @csrf
+                <div class="form-group">
+                    <label for="product_name" class="form-label">
+                        Product Name <span class="required-asterisk">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        name="product_name" 
+                        id="product_name" 
+                        class="form-input"
+                        placeholder="e.g., Premium Wireless Headphones" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="product_description" class="form-label">
+                        Product Description <span class="required-asterisk">*</span>
+                    </label>
+                    <textarea 
+                        name="product_description" 
+                        id="product_description" 
+                        class="form-textarea"
+                        placeholder="Describe your product features, benefits, and specifications..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product_category" class="form-label">
+                            Category <span class="required-asterisk">*</span>
+                        </label>
+                        <select name="product_category" id="product_category" class="form-select" required>
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Appliances">Appliances</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Fitness">Fitness</option>
+                            <option value="Kitchen">Kitchen</option>
+                            <option value="Books">Books</option>
+                            <option value="Home & Garden">Home & Garden</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product_price" class="form-label">
+                            Price ($) <span class="required-asterisk">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            step="0.01" 
+                            min="0" 
+                            name="product_price" 
+                            id="product_price" 
+                            class="form-input"
+                            placeholder="199.99" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product_stock" class="form-label">
+                            Stock Quantity <span class="required-asterisk">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            step="1" 
+                            min="0" 
+                            name="product_stock" 
+                            id="product_stock" 
+                            class="form-input"
+                            placeholder="50" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="form-submit">
+                    Add Product to Store
+                </button>
+            </form>
+
         </div>
-        <div class="input-row">
-            <div class="field-group">
-                <label for="product_category">Category</label>
-                <select name="product_category" id="product_category" required>
-                    <option value="" disabled selected>Select category</option>
-                    <option>Electronics</option>
-                    <option>Clothing</option>
-                    <option>Books</option>
-                    <option>Home &amp; Kitchen</option>
-                    <option>Other</option>
-                </select>
-            </div>
-            <div class="field-group">
-                <label for="product_price">Price ($)</label>
-                <input type="number" step="0.01" min="0" name="product_price" id="product_price" placeholder="199.99" required>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="field-group">
-                <label for="product_stock">Stock</label>
-                <input type="number" step="1" min="0" name="product_stock" id="product_stock" placeholder="50" required>
-            </div>
-        </div>
-        <button type="submit">Add Product</button>
-    </form>
-</div>
+    </div>
+
 </body>
 </html>

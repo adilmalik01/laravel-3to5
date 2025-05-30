@@ -38,7 +38,6 @@
 
 
     <div class="card">
-        <h1>Product Created !!</h1>
         <a href="/show-form">Add Another Product!!!</a>
     </div>
 

@@ -3,14 +3,14 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
+Route::get('/', [ProductController::class, 'fetchData']);
 
-Route::get('/show-form',[ProductController::class,"showForm"]);
+Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct']);
 
-Route::post('/submit-form', [ProductController::class,'submitHandler']);
+Route::get('/product/{id}', [ProductController::class, 'DetailProduct']);
 
-Route::get('/products', [ProductController::class,'fetchData']);
+Route::get('/show-form', [ProductController::class, "showForm"]);
+
+Route::post('/submit-form', [ProductController::class, 'submitHandler']);
