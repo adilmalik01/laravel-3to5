@@ -206,6 +206,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -233,9 +234,10 @@
                     <div class="product-footer">
                         <div class="product-price">{{$product['product_price']}}</div>
 
-                        <a href="/product/{{$product['id'] }}" class="add-to-cart">Details</a>
+                        <a href="/product/{{$product['id'] }}" class="add-to-cart"><i class="bi bi-eye"></i></a>
 
-                        <a href="/delete/{{$product['id'] }}" class="add-to-cart">Delete</a>
+                        <a href="/delete/{{$product['id'] }}" class="add-to-cart"><i class="bi bi-trash-fill"></i></a>
+                        <a href="/edit-product/{{$product['id'] }}" class="add-to-cart"><i class="bi bi-pencil-fill"></i></a>
 
 
                     </div>
