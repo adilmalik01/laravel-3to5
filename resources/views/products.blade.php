@@ -83,6 +83,7 @@
             border-radius: 15px;
             margin-bottom: 1.5rem;
             display: flex;
+            
             align-items: center;
             justify-content: center;
             font-size: 3rem;
@@ -91,10 +92,10 @@
             overflow: hidden;
         }
 
-        .product-image::before {
-            content: '🛍️';
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        .product-image img {
+            width: 300px;
         }
+
 
         .product-name {
             font-size: 1.5rem;
@@ -221,7 +222,9 @@
             @foreach ($productsData as $product)
 
                 <div class="product-card">
-                    <div class="product-image"></div>
+                    <div class="product-image">
+                        <img src={{ asset($product['product_image']) }} alt="">
+                    </div>
                     <h2 class="product-name">{{$product['product_name']}}</h2>
                     <p class="product-description">{{$product['product_description']}}</p>
                     <div class="product-meta">
@@ -237,7 +240,8 @@
                         <a href="/product/{{$product['id'] }}" class="add-to-cart"><i class="bi bi-eye"></i></a>
 
                         <a href="/delete/{{$product['id'] }}" class="add-to-cart"><i class="bi bi-trash-fill"></i></a>
-                        <a href="/edit-product/{{$product['id'] }}" class="add-to-cart"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="/edit-product/{{$product['id'] }}" class="add-to-cart"><i
+                                class="bi bi-pencil-fill"></i></a>
 
 
                     </div>

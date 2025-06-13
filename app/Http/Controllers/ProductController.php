@@ -35,6 +35,20 @@ class ProductController extends Controller
         $product->product_price = $product_price;
         $product->product_stock = $product_stock;
 
+
+
+        if ($request->hasFile('product_image')) {
+            
+            $image = $request->file('product_image');
+            $filename = time() . '_' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $filename);
+            $product->product_image = 'uploads/' . $filename;
+
+        }else{
+             $product->product_image = null;
+        }
+
+
         $product->save();
 
         return view("confirm");
@@ -63,6 +77,17 @@ class ProductController extends Controller
         $product->product_price = $product_price;
         $product->product_stock = $product_stock;
 
+
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads'), $filename);
+            $product->product_image = 'uploads/' . $filename;
+        } else {
+            $product->product_image = null;
+        }
+
+
         $product->save();
 
 
@@ -72,7 +97,7 @@ class ProductController extends Controller
 
 
 
-    
+
 
 
     function fetchData()

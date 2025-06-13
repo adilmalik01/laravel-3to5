@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -141,6 +142,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -317,19 +319,20 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">ShopHub</a>
-            
+
             <ul class="nav-links" id="navLinks">
                 <li><a href="/">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Service</a></li>
                 <li><a href="#" class="nav-cta active">Add Product</a></li>
             </ul>
-            
+
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
     </nav>
@@ -338,34 +341,32 @@
         <div class="form-container">
             <h1 class="form-title">Add New Product</h1>
             <p class="form-subtitle">Create a new product listing for your store</p>
-            
-            <form class="form-grid" method="POST" action="/submit-form" id="productForm">
+
+            <form class="form-grid" method="POST" enctype="multipart/form-data" action="/submit-form" id="productForm">
                 @csrf
+                <div class="form-group">
+                    <label for="product_image" class="form-label">
+                        Product Image <span class="required-asterisk">*</span>
+                    </label>
+                    <input type="file" name="product_image" id="product_name" class="form-input"
+                         required>
+                </div>
+
                 <div class="form-group">
                     <label for="product_name" class="form-label">
                         Product Name <span class="required-asterisk">*</span>
                     </label>
-                    <input 
-                        type="text" 
-                        name="product_name" 
-                        id="product_name" 
-                        class="form-input"
-                        placeholder="e.g., Premium Wireless Headphones" 
-                        required
-                    >
+                    <input type="text" name="product_name" id="product_name" class="form-input"
+                        placeholder="e.g., Premium Wireless Headphones" required>
                 </div>
 
                 <div class="form-group">
                     <label for="product_description" class="form-label">
                         Product Description <span class="required-asterisk">*</span>
                     </label>
-                    <textarea 
-                        name="product_description" 
-                        id="product_description" 
-                        class="form-textarea"
+                    <textarea name="product_description" id="product_description" class="form-textarea"
                         placeholder="Describe your product features, benefits, and specifications..."
-                        required
-                    ></textarea>
+                        required></textarea>
                 </div>
 
                 <div class="form-row">
@@ -391,16 +392,8 @@
                         <label for="product_price" class="form-label">
                             Price ($) <span class="required-asterisk">*</span>
                         </label>
-                        <input 
-                            type="number" 
-                            step="0.01" 
-                            min="0" 
-                            name="product_price" 
-                            id="product_price" 
-                            class="form-input"
-                            placeholder="199.99" 
-                            required
-                        >
+                        <input type="number" step="0.01" min="0" name="product_price" id="product_price"
+                            class="form-input" placeholder="199.99" required>
                     </div>
                 </div>
 
@@ -409,16 +402,8 @@
                         <label for="product_stock" class="form-label">
                             Stock Quantity <span class="required-asterisk">*</span>
                         </label>
-                        <input 
-                            type="number" 
-                            step="1" 
-                            min="0" 
-                            name="product_stock" 
-                            id="product_stock" 
-                            class="form-input"
-                            placeholder="50" 
-                            required
-                        >
+                        <input type="number" step="1" min="0" name="product_stock" id="product_stock" class="form-input"
+                            placeholder="50" required>
                     </div>
                 </div>
 
@@ -431,4 +416,5 @@
     </div>
 
 </body>
+
 </html>
