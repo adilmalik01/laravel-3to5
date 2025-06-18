@@ -28,6 +28,7 @@
         .header {
             text-align: center;
             margin-bottom: 3rem;
+            margin-top: 40px;
             color: white;
         }
 
@@ -83,7 +84,7 @@
             border-radius: 15px;
             margin-bottom: 1.5rem;
             display: flex;
-            
+
             align-items: center;
             justify-content: center;
             font-size: 3rem;

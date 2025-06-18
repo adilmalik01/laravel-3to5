@@ -179,10 +179,6 @@
             overflow: hidden;
         }
 
-        .product-image::before {
-            content: '🛍️';
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-        }
 
         .product-name {
             font-size: 1.5rem;
@@ -338,127 +334,14 @@
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Service</a></li>
+                <li><a href="/contact">Contact</a></li>
                 <li><a href="/show-form" class="nav-cta">Add Product</a></li>
             </ul>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
     </nav>
-
-    <div class="main-content">
-        <div class="container">
-        <div class="header">
-            <h1>Our Products</h1>
-            <p>Discover amazing products crafted with care</p>
-        </div>
-        
-        <div class="products-grid">
-            <!-- Sample products - replace with your dynamic data -->
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h2 class="product-name">Premium Wireless Headphones</h2>
-                <p class="product-description">Experience crystal-clear audio with our premium wireless headphones featuring noise cancellation and 30-hour battery life.</p>
-                <div class="product-meta">
-                    <span class="product-category">Electronics</span>
-                    <div class="product-stock">
-                        <div class="stock-indicator"></div>
-                        <span>25 in stock</span>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <div class="product-price">$199.99</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h2 class="product-name">Organic Cotton T-Shirt</h2>
-                <p class="product-description">Soft, comfortable, and sustainable. Made from 100% organic cotton with a modern fit that's perfect for everyday wear.</p>
-                <div class="product-meta">
-                    <span class="product-category">Clothing</span>
-                    <div class="product-stock">
-                        <div class="stock-indicator low"></div>
-                        <span>5 in stock</span>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <div class="product-price">$29.99</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h2 class="product-name">Smart Coffee Maker</h2>
-                <p class="product-description">Wake up to perfectly brewed coffee every morning. Schedule your brew time with our smart app integration.</p>
-                <div class="product-meta">
-                    <span class="product-category">Appliances</span>
-                    <div class="product-stock">
-                        <div class="stock-indicator"></div>
-                        <span>12 in stock</span>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <div class="product-price">$149.99</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h2 class="product-name">Artisan Leather Wallet</h2>
-                <p class="product-description">Handcrafted from premium leather, this wallet combines style and functionality with RFID protection for your cards.</p>
-                <div class="product-meta">
-                    <span class="product-category">Accessories</span>
-                    <div class="product-stock">
-                        <div class="stock-indicator"></div>
-                        <span>18 in stock</span>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <div class="product-price">$79.99</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h2 class="product-name">Fitness Tracking Watch</h2>
-                <p class="product-description">Monitor your health and fitness goals with advanced sensors, GPS tracking, and a week-long battery life.</p>
-                <div class="product-meta">
-                    <span class="product-category">Fitness</span>
-                    <div class="product-stock">
-                        <div class="stock-indicator out"></div>
-                        <span>Out of stock</span>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <div class="product-price">$299.99</div>
-                    <button class="add-to-cart" disabled style="opacity: 0.5; cursor: not-allowed;">Notify Me</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h2 class="product-name">Bamboo Cutting Board Set</h2>
-                <p class="product-description">Eco-friendly kitchen essentials made from sustainable bamboo. Includes three different sizes for all your cooking needs.</p>
-                <div class="product-meta">
-                    <span class="product-category">Kitchen</span>
-                    <div class="product-stock">
-                        <div class="stock-indicator"></div>
-                        <span>30 in stock</span>
-                    </div>
-                </div>
-                <div class="product-footer">
-                    <div class="product-price">$45.99</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
+    
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');

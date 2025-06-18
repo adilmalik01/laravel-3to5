@@ -329,6 +329,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="/">Home</a></li>
                 <li><a href="#">About</a></li>
+                <li><a href="/contact">Contact</a></li>
                 <li><a href="#">Service</a></li>
                 <li><a href="#" class="nav-cta active">Add Product</a></li>
             </ul>
